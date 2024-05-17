@@ -1,3 +1,7 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+
 def make_outline(width):
   # A width of a flag was given as an input (AB = width)
   # Height of the flag is 4/3*width (AC = height)
