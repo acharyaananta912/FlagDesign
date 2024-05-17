@@ -1,18 +1,19 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from sun import make_sun
 
 
-def make_outline(width):
+def make_outline(width, fill_color =True, dpi=500):
   # A width of a flag was given as an input (AB = width)
   # Height of the flag is 4/3*width (AC = height)
   height = 4/3*width
 
   # the vertical line of a flag extends from 0 to height, x = 0, only y varies (vertical line x = vlx, vertical line y = vly)
   # similarly the lower horizontal line extends from 0 to width, (horizontal lower line x = hllx, horizontal lower line y = hlly)
-  vly = np.arange(0, height, 0.01)
+  vly = np.array([0, height])
   vlx = np.zeros(len(vly))
 
-  hllx = np.arange(0,width,0.01)
+  hllx = np.array([0,width])
   hlly = np.zeros(len(hllx))
 
   # Now we need slant line to the bottom. The slant line is extended from the lower right corner upto the length of width in the height
@@ -30,8 +31,8 @@ def make_outline(width):
   # upper horizontal line x will start from the same point where sllx started and ended 
   # y will start from width*(sqrt(2) - sqrt(2) + 1)/sqrt(2) = width/sqrt(2)
   # upper horizontal line x: sllx (same as above)
-  # upper horizontal line y: uhly
-  uhly = np.ones(len(sllx))*width/np.sqrt(2)
+  # upper horizontal line y: huly
+  huly = np.ones(len(sllx))*width/np.sqrt(2)
 
   # upper slanted line goes from the top of the height to the base of upper horizontal line
   # x: 0 to width
@@ -42,12 +43,23 @@ def make_outline(width):
 
   plt.figure(figsize=(height, width))
   plt.gca().set_aspect('equal', adjustable='box')
+  if fill_color:
+    color = "red"
+    line_width = 1
+  else:
+    color = "red"
+    line_width = 0.5
 
-  plt.plot(vlx, vly, "-b")
-  plt.plot(hllx, hlly,"-b")
-  plt.plot(sllx, slly,"-b")
-  plt.plot(sllx, uhly,"-b")
-  plt.plot(hllx, suly,"-b")
+  
+
+  plt.plot(vlx, vly, color, linewidth = line_width)
+  plt.plot(hllx, hlly, color, linewidth = line_width)
+  plt.plot(sllx, slly, color, linewidth = line_width)
+  plt.plot(sllx, huly, color, linewidth = line_width)
+  plt.plot(hllx, suly,color, linewidth = line_width)
   plt.axis('off')
-  plt.savefig("flag_outline.png")
+
+  make_sun(width, fill_color, line_width)
+  plt.savefig("flag_outline.png", dpi=dpi)
+
 
