@@ -27,7 +27,7 @@ def make_sun(width_of_flag):
   plt.grid("on")
   for i in range(len(smaller_circle_angles)):
     plt.plot([smaller_circle_x[i], larger_circle_x[i]], [smaller_circle_y[i], larger_circle_y[i]], 'k-')
-    if i == len(x)-1:
+    if i == len(smaller_circle_angles)-1:
           plt.plot([smaller_circle_x[0], larger_circle_x[i]], [smaller_circle_y[0], larger_circle_y[i]], 'k-')
           break
     plt.plot([smaller_circle_x[i+1], larger_circle_x[i]], [smaller_circle_y[i+1], larger_circle_y[i]], 'k-')
