@@ -60,6 +60,6 @@ def make_outline(width, fill_color =True, dpi=500):
   plt.axis('off')
 
   make_sun(width, fill_color, line_width)
-  plt.savefig("flag_outline.png", dpi=dpi)
+  plt.savefig("flag_outline.pdf", dpi=dpi)
 
 
